@@ -36,3 +36,7 @@ npm install --save ifx-postgrid
 ## API Documentation
 
 None yet
+
+---
+
+Videos used in tests acquired from [Pexels](https://videos.pexels.com/)
