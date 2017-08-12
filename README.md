@@ -8,7 +8,7 @@ PostGrid is a method of storing large files inside a PostgreSQL database.
 
 - **None** - Project has no features.
 
-View the [Changelog](https://github.com/internalfx/regrid/blob/master/CHANGELOG.md)
+View the [Changelog](https://github.com/internalfx/ifx-postgrid/blob/master/CHANGELOG.md)
 
 #### Need help?
 
@@ -31,6 +31,7 @@ npm install --save ifx-postgrid
 ## TL;DR
 
 ```javascript
+var PostGrid = require('ifx-postgrid')
 ```
 
 ## API Documentation
