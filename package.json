@@ -11,7 +11,7 @@
     "url": "git+https://github.com/internalfx/ifx-postgrid.git"
   },
   "author": "Bryan Morris",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/internalfx/ifx-postgrid/issues"
   },
