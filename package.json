@@ -1,0 +1,26 @@
+{
+  "name": "ifx-postgrid",
+  "version": "0.0.0",
+  "description": "A file storage system for PostgreSQL inspired by GridFS",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/internalfx/ifx-postgrid.git"
+  },
+  "author": "Bryan Morris",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/internalfx/ifx-postgrid/issues"
+  },
+  "homepage": "https://github.com/internalfx/ifx-postgrid",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "chai": "^4.1.1",
+    "del": "^3.0.0",
+    "lru-cache": "^4.1.1",
+    "mocha": "^3.5.0"
+  }
+}
