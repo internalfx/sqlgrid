@@ -20,8 +20,11 @@
     "bluebird": "^3.5.0",
     "chai": "^4.1.1",
     "del": "^3.0.0",
+    "flushwritable": "^1.0.0",
     "lru-cache": "^4.1.1",
     "mocha": "^3.5.0",
-    "sequelize": "^4.4.3"
+    "pg": "^7.0.3",
+    "sequelize": "^4.4.3",
+    "stream-to-array": "^2.3.0"
   }
 }
