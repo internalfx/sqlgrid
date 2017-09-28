@@ -1,13 +1,13 @@
-docker pull postgres:9.6
+docker stop ifx-postgrid
 
-./stop-test-server.sh
+docker rm ifx-postgrid
+
+docker pull postgres:9.6
 
 docker run \
   -p 5432:5432 \
   --name ifx-postgrid \
   -e POSTGRES_PASSWORD='test' \
   -e POSTGRES_USER='test' \
-  -e POSTGRES_DB='test' \
+  -e POSTGRES_DB='postgrid' \
   -d postgres:9.6
-
-  # -v "$PWD/test_data/pgdata:/var/lib/postgresql/data" \
