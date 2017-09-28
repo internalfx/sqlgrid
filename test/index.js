@@ -23,7 +23,7 @@ describe('writeFile()', function () {
   })
 
   it('complete without error', async function () {
-    let buffer = await fs.readFileAsync(path.join(__dirname, 'videos', 'shore.mp4'))
+    let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'shore.mp4'))
     await pGrid.writeFile({
       filename: '/videos/shore.mp4',
       buffer: buffer,
