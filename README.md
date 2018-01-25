@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/sqlgrid.svg)](https://www.npmjs.com/package/sqlgrid) [![license](https://img.shields.io/npm/l/sqlgrid.svg)](https://github.com/internalfx/sqlgrid/blob/master/LICENSE)
 
-SQLGrid is a method of storing large files inside a PostgreSQL database.
+SQLGrid is a method of storing large files inside a SQL database.
 
 ### Features
 
