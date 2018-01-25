@@ -1,1 +1,1 @@
-module.exports = require('./lib/postgrid')
+module.exports = require('./lib/sqlgrid')
