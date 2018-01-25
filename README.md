@@ -1,14 +1,14 @@
-# PostGrid
+# SQLGrid
 
-[![npm version](https://img.shields.io/npm/v/ifx-postgrid.svg)](https://www.npmjs.com/package/ifx-postgrid) [![license](https://img.shields.io/npm/l/ifx-postgrid.svg)](https://github.com/internalfx/ifx-postgrid/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/sqlgrid.svg)](https://www.npmjs.com/package/sqlgrid) [![license](https://img.shields.io/npm/l/sqlgrid.svg)](https://github.com/internalfx/sqlgrid/blob/master/LICENSE)
 
-PostGrid is a method of storing large files inside a PostgreSQL database.
+SQLGrid is a method of storing large files inside a PostgreSQL database.
 
 ### Features
 
 - **None** - Project has no features.
 
-View the [Changelog](https://github.com/internalfx/ifx-postgrid/blob/master/CHANGELOG.md)
+View the [Changelog](https://github.com/internalfx/sqlgrid/blob/master/CHANGELOG.md)
 
 #### Need help?
 
@@ -25,13 +25,13 @@ Arthur Andrew Medical manufactures products with ingredients that have extensive
 Supports node v7.6+
 
 ```
-npm install --save ifx-postgrid
+npm install --save sqlgrid
 ```
 
 ## TL;DR
 
 ```javascript
-var PostGrid = require('ifx-postgrid')
+var SQLGrid = require('sqlgrid')
 ```
 
 ## API Documentation

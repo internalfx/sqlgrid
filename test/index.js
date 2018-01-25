@@ -5,27 +5,27 @@
 let path = require('path')
 let Promise = require('bluebird')
 let fs = Promise.promisifyAll(require('fs'))
-let PostGrid = require('../index')
+let SQLGrid = require('../index')
 let ifxUtils = require('../lib/ifx-utils.js')
 
 describe('initBucket()', function () {
   it('complete without error', async function () {
-    let pGrid = PostGrid({db: 'postgrid', username: 'test', password: 'test'})
-    await pGrid.initBucket({dropTables: true})
+    let sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    await sqlGrid.initBucket({dropTables: true})
   })
 })
 
 describe('writeFile()', function () {
-  let pGrid
+  let sqlGrid
 
   before(async function () {
-    pGrid = PostGrid({db: 'postgrid', username: 'test', password: 'test'})
-    await pGrid.initBucket({dropTables: true})
+    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    await sqlGrid.initBucket({dropTables: true})
   })
 
   it('complete without error', async function () {
     let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
-    await pGrid.writeFile({
+    await sqlGrid.writeFile({
       filename: '/pictures/enterprise.jpg',
       buffer: buffer
     })
@@ -33,16 +33,16 @@ describe('writeFile()', function () {
 })
 
 describe('createWriteStream()', function () {
-  let pGrid
+  let sqlGrid
 
   before(async function () {
-    pGrid = PostGrid({db: 'postgrid', username: 'test', password: 'test'})
-    await pGrid.initBucket({dropTables: true})
+    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    await sqlGrid.initBucket({dropTables: true})
   })
 
   it('complete without error', async function () {
     let rStream = await fs.createReadStream(path.join(__dirname, 'files', 'enterprise.jpg'))
-    let wStream = pGrid.createWriteStream({
+    let wStream = sqlGrid.createWriteStream({
       filename: '/pictures/enterprise.jpg'
     })
 
@@ -53,37 +53,37 @@ describe('createWriteStream()', function () {
 })
 
 describe('getFile()', function () {
-  let pGrid
+  let sqlGrid
 
   before(async function () {
-    pGrid = PostGrid({db: 'postgrid', username: 'test', password: 'test'})
-    await pGrid.initBucket({dropTables: true})
+    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    await sqlGrid.initBucket({dropTables: true})
     let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
-    await pGrid.writeFile({
+    await sqlGrid.writeFile({
       filename: '/pictures/enterprise.jpg',
       buffer: buffer
     })
   })
 
   it('complete without error', async function () {
-    await pGrid.getFile({filename: '/pictures/enterprise.jpg'})
+    await sqlGrid.getFile({filename: '/pictures/enterprise.jpg'})
   })
 })
 
 describe('readFile()', function () {
-  let pGrid
+  let sqlGrid
 
   before(async function () {
-    pGrid = PostGrid({db: 'postgrid', username: 'test', password: 'test'})
-    await pGrid.initBucket({dropTables: true})
+    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    await sqlGrid.initBucket({dropTables: true})
     let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
-    await pGrid.writeFile({
+    await sqlGrid.writeFile({
       filename: '/pictures/enterprise.jpg',
       buffer: buffer
     })
   })
 
   it('complete without error', async function () {
-    await pGrid.readFile({filename: '/pictures/enterprise.jpg'})
+    await sqlGrid.readFile({filename: '/pictures/enterprise.jpg'})
   })
 })
