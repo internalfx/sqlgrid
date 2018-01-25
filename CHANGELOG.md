@@ -1,8 +1,8 @@
-# 0.0.0
+# 0.0.2
 
 #### New Features
 
-- None
+- Successful port of rethinkdb-regrid
 
 #### Breaking Changes
 
