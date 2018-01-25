@@ -50,7 +50,7 @@ bucket.initBucket().then(function () {
 
 | key | default | type | description |
 | --- | --- | --- | --- |
-| connectionOptions | {}| Object | `connectionOptions` is passed directly to a [sequleize constructor](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor). If `connectionOptions` is an instance of sequleize it will be used directly. |
+| connectionOptions | {}| Object | `connectionOptions` is passed directly to a [sequleize constructor](http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor). If `connectionOptions` is an instance of [sequleize](http://docs.sequelizejs.com/) it will be used directly. |
 | bucketOptions | {} | Object |  Optional parameters listed below |
 
 ###### Options
