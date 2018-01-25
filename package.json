@@ -1,21 +1,21 @@
 {
-  "name": "ifx-postgrid",
+  "name": "sqlgrid",
   "version": "0.0.0",
-  "description": "A file storage system for PostgreSQL inspired by GridFS",
+  "description": "A file storage system for SQL databases inspired by GridFS",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/internalfx/ifx-postgrid.git"
+    "url": "git+https://github.com/internalfx/sqlgrid.git"
   },
   "author": "Bryan Morris",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/internalfx/ifx-postgrid/issues"
+    "url": "https://github.com/internalfx/sqlgrid/issues"
   },
-  "homepage": "https://github.com/internalfx/ifx-postgrid",
+  "homepage": "https://github.com/internalfx/sqlgrid",
   "dependencies": {
     "bluebird": "^3.5.0",
     "chai": "^4.1.1",
