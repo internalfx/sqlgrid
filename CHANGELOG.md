@@ -1,3 +1,13 @@
+# 0.0.4
+
+#### New Features
+
+- Add dependencies for supported databases.
+
+#### Breaking Changes
+
+- None
+
 # 0.0.3
 
 #### New Features

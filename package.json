@@ -1,6 +1,6 @@
 {
   "name": "sqlgrid",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A file storage system for SQL databases inspired by GridFS",
   "main": "index.js",
   "scripts": {
