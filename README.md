@@ -34,7 +34,7 @@ npm install --save sqlgrid
 ```javascript
 var SQLGrid = require('sqlgrid')
 
-var bucket = SQLGrid({database, username, password})
+var bucket = SQLGrid({dialect: 'sqlite'})
 
 // initBucket creates tables and indexes if they don't exist, returns a promise.
 bucket.initBucket().then(function () {
