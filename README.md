@@ -13,13 +13,11 @@ SQLGrid is a method of storing large files inside a SQL database.
 
 View the [Changelog](https://github.com/internalfx/sqlgrid/blob/master/CHANGELOG.md)
 
-#### Need help?
-
 ---
 
 Special thanks to [Arthur Andrew Medical](http://www.arthurandrew.com/) for sponsoring this project.
 
-Arthur Andrew Medical manufactures products with ingredients that have extensive clinical research for safety and efficacy. We specialize in Enzymes, Probiotics and Antioxidants.
+Arthur Andrew Medical manufactures products with ingredients that have extensive clinical research for safety and efficacy. They specialize in Enzymes, Probiotics and Antioxidants.
 
 ---
 
