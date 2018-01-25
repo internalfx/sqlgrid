@@ -10,7 +10,7 @@ let ifxUtils = require('../lib/ifx-utils.js')
 
 describe('initBucket()', function () {
   it('complete without error', async function () {
-    let sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    let sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
     await sqlGrid.initBucket({dropTables: true})
   })
 })
@@ -19,7 +19,7 @@ describe('writeFile()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
     await sqlGrid.initBucket({dropTables: true})
   })
 
@@ -36,7 +36,7 @@ describe('createWriteStream()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
     await sqlGrid.initBucket({dropTables: true})
   })
 
@@ -56,7 +56,7 @@ describe('getFile()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
     await sqlGrid.initBucket({dropTables: true})
     let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
     await sqlGrid.writeFile({
@@ -74,7 +74,7 @@ describe('readFile()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({db: 'SQLGrid', username: 'test', password: 'test'})
+    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
     await sqlGrid.initBucket({dropTables: true})
     let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
     await sqlGrid.writeFile({
