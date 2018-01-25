@@ -6,7 +6,10 @@ SQLGrid is a method of storing large files inside a SQL database.
 
 ### Features
 
-- **None** - Project has no features.
+- **Easy** - Read and write files as if they were on disk with developer friendly APIs.
+- **Byte-range Capable** - Supports byte ranges to allow for streaming media.
+- **Consistent** - Sha256 hashes are calculated when the file is written, and verified when read back out.
+- **Fast** - Supports in-memory caching so your database server doesn't fall over when something goes viral.
 
 View the [Changelog](https://github.com/internalfx/sqlgrid/blob/master/CHANGELOG.md)
 
