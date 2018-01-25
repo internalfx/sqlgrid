@@ -22,8 +22,11 @@
     "del": "^3.0.0",
     "lru-cache": "^4.1.1",
     "mocha": "^3.5.0",
+    "mysql2": "^1.5.1",
+    "pg": "^6.0.0",
     "sequelize": "^4.4.3",
     "sqlite3": "^3.1.13",
-    "stream-to-array": "^2.3.0"
+    "stream-to-array": "^2.3.0",
+    "tedious": "^2.2.3"
   }
 }
