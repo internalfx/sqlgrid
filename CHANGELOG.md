@@ -1,3 +1,14 @@
+# 0.0.5
+
+#### New Features
+
+- Add `deleteFileById` method
+- Add `deleteFileByName` method
+
+#### Breaking Changes
+
+- None
+
 # 0.0.4
 
 #### New Features
