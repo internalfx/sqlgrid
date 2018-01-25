@@ -7,6 +7,7 @@ SQLGrid is a method of storing large files inside a SQL database.
 ### Features
 
 - **Easy** - Read and write files as if they were on disk with developer friendly APIs.
+- **Revisions** - Keeps multiple versions of files.
 - **Byte-range Capable** - Supports byte ranges to allow for streaming media.
 - **Consistent** - Sha256 hashes are calculated when the file is written, and verified when read back out.
 - **Fast** - Supports in-memory caching so your database server doesn't fall over when something goes viral.
@@ -262,6 +263,71 @@ Returns a read stream for reading a file from SQLGrid.
 var readStream = bucket.createReadStream({id: 'ca608825-15c0-44b5-9bef-3ccabf061bab'})
 
 readStream.pipe(fs.createWriteStream('./mySavedVideo.mp4'))
+```
+
+---
+
+### `deleteFileById(options)`
+
+###### Options
+
+| key | default | type | description |
+| --- | --- | --- | --- |
+| id | *required* | String | The `id` of the file to delete |
+
+##### returns
+
+Boolean, `true` if successful, `false` otherwise.
+
+##### Description
+
+Deletes a file from SQLGrid.
+
+##### Example
+
+```javascript
+let result = await sqlGrid.deleteFileById({id: 1})
+```
+
+---
+
+### `deleteFileByName(options)`
+
+###### Options
+
+| key | default | type | description |
+| --- | --- | --- | --- |
+| filename | Null | String | The `filename` of the file to delete |
+| revision | `all` | Number | The revision of the file to delete. If multiple files are uploaded under the same `filename` they are considered revisions. This may be a positive or negative number (see chart below). The default is to delete *all* revisions. |
+
+###### How revision numbers work
+
+If there are five versions of a file, the below chart would be the revision numbers
+
+| Number | Description |
+| --- | --- |
+| `0` or `-5` | The original file |
+| `1` or `-4` | The first revision |
+| `2` or `-3` | The second revision |
+| `3` or `-2` | The second most recent revision |
+| `4` or `-1` | The most recent revision |
+
+##### returns
+
+Boolean, `true` if successful, `false` otherwise.
+
+##### Description
+
+Deletes a file from SQLGrid.
+
+##### Example
+
+```javascript
+let result = await sqlGrid.deleteFileByName({filename: 'video.mp4'})
+// Deletes all revisions of video.mp4
+
+let result = await sqlGrid.deleteFileByName({filename: 'video.mp4', revision: -1})
+// Deletes only the most recent revision of video.mp4
 ```
 
 ---
