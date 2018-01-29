@@ -8,9 +8,17 @@ let fs = Promise.promisifyAll(require('fs'))
 let SQLGrid = require('../index')
 let ifxUtils = require('../lib/ifx-utils.js')
 
+let sequelizeConf = {
+  database: 'sqlgrid',
+  username: 'test',
+  password: 'test',
+  dialect: 'postgres',
+  logging: null
+}
+
 describe('initBucket()', function () {
-  it('complete without error', async function () {
-    let sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
+  it('Basic usage', async function () {
+    let sqlGrid = SQLGrid(sequelizeConf)
     await sqlGrid.initBucket({dropTables: true})
   })
 })
@@ -19,16 +27,32 @@ describe('writeFile()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
+    sqlGrid = SQLGrid(sequelizeConf)
     await sqlGrid.initBucket({dropTables: true})
   })
 
-  it('complete without error', async function () {
-    let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
+  it('Basic usage', async function () {
     await sqlGrid.writeFile({
-      filename: '/pictures/enterprise.jpg',
-      buffer: buffer
+      filename: 'enterprise.jpg',
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
     })
+  })
+
+  it('Handles duplicates', async function () {
+    await Promise.all([
+      sqlGrid.writeFile({
+        filename: 'saturnV.jpg',
+        buffer: fs.readFileSync(path.join(__dirname, 'files', 'saturnV.jpg'))
+      }),
+      sqlGrid.writeFile({
+        filename: 'saturnV.jpg',
+        buffer: fs.readFileSync(path.join(__dirname, 'files', 'saturnV.jpg'))
+      }),
+      sqlGrid.writeFile({
+        filename: 'saturnV.jpg',
+        buffer: fs.readFileSync(path.join(__dirname, 'files', 'saturnV.jpg'))
+      })
+    ])
   })
 })
 
@@ -36,19 +60,48 @@ describe('createWriteStream()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
+    sqlGrid = SQLGrid(sequelizeConf)
     await sqlGrid.initBucket({dropTables: true})
   })
 
-  it('complete without error', async function () {
-    let rStream = await fs.createReadStream(path.join(__dirname, 'files', 'enterprise.jpg'))
+  it('Basic usage', async function () {
+    let rStream = await fs.createReadStream(path.join(__dirname, 'files', 'saturnV.jpg'))
     let wStream = sqlGrid.createWriteStream({
-      filename: '/pictures/enterprise.jpg'
+      filename: 'saturnV.jpg'
     })
 
     rStream.pipe(wStream)
 
     await ifxUtils.writeStreamPromise(wStream)
+  })
+
+  it('Handles large files', async function () {
+    let rStream = await fs.createReadStream(path.join(__dirname, 'files', 'clouds.mp4'))
+    let wStream = sqlGrid.createWriteStream({
+      filename: 'clouds.mp4'
+    })
+
+    rStream.pipe(wStream)
+    await ifxUtils.writeStreamPromise(wStream)
+  })
+
+  it('Handles duplicate files', async function () {
+    let rStream2 = await fs.createReadStream(path.join(__dirname, 'files', 'clouds.mp4'))
+    let rStream3 = await fs.createReadStream(path.join(__dirname, 'files', 'clouds.mp4'))
+    let wStream2 = sqlGrid.createWriteStream({
+      filename: 'clouds2.mp4'
+    })
+    let wStream3 = sqlGrid.createWriteStream({
+      filename: 'clouds3.mp4'
+    })
+
+    rStream2.pipe(wStream2)
+    rStream3.pipe(wStream3)
+
+    await Promise.all([
+      ifxUtils.writeStreamPromise(wStream2),
+      ifxUtils.writeStreamPromise(wStream3)
+    ])
   })
 })
 
@@ -56,17 +109,28 @@ describe('getFile()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
+    sqlGrid = SQLGrid(sequelizeConf)
     await sqlGrid.initBucket({dropTables: true})
-    let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
     await sqlGrid.writeFile({
-      filename: '/pictures/enterprise.jpg',
-      buffer: buffer
+      filename: 'enterprise.jpg',
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
+    })
+    await sqlGrid.writeFile({
+      filename: 'enterprise.jpg',
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
+    })
+    await sqlGrid.writeFile({
+      filename: 'enterprise.jpg',
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
     })
   })
 
-  it('complete without error', async function () {
-    await sqlGrid.getFile({filename: '/pictures/enterprise.jpg'})
+  it('Basic usage', async function () {
+    await sqlGrid.getFile({filename: 'enterprise.jpg'})
+  })
+
+  it(`All revisions`, async function () {
+    await sqlGrid.getFile({filename: 'enterprise.jpg', revision: 'all'})
   })
 })
 
@@ -74,17 +138,28 @@ describe('readFile()', function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
+    sqlGrid = SQLGrid(sequelizeConf)
     await sqlGrid.initBucket({dropTables: true})
-    let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
     await sqlGrid.writeFile({
-      filename: '/pictures/enterprise.jpg',
-      buffer: buffer
+      filename: 'enterprise.jpg',
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
+    })
+    await sqlGrid.writeFile({
+      filename: 'enterprise.jpg',
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
+    })
+    await sqlGrid.writeFile({
+      filename: 'enterprise.jpg',
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
     })
   })
 
-  it('complete without error', async function () {
-    await sqlGrid.readFile({filename: '/pictures/enterprise.jpg'})
+  it('Basic usage', async function () {
+    await sqlGrid.readFile({filename: 'enterprise.jpg'})
+  })
+
+  it(`All revisions`, async function () {
+    await sqlGrid.readFile({filename: 'enterprise.jpg', revision: 'all'})
   })
 })
 
@@ -93,7 +168,7 @@ describe('deleteFileById()', function () {
   let file
 
   before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
+    sqlGrid = SQLGrid(sequelizeConf)
     await sqlGrid.initBucket({dropTables: true})
     let buffer = await fs.readFileAsync(path.join(__dirname, 'files', 'enterprise.jpg'))
     file = await sqlGrid.writeFile({
@@ -102,20 +177,20 @@ describe('deleteFileById()', function () {
     })
   })
 
-  it('complete without error', async function () {
+  it('Basic usage', async function () {
     await sqlGrid.deleteFileById({id: file.id})
   })
 })
 
-describe(`deleteFileByName({revision: 'all'})`, function () {
+describe(`deleteFileByName()`, function () {
   let sqlGrid
 
   before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
+    sqlGrid = SQLGrid(sequelizeConf)
     await sqlGrid.initBucket({dropTables: true})
     await sqlGrid.writeFile({
       filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'saturnV.jpg'))
     })
     await sqlGrid.writeFile({
       filename: 'testfile',
@@ -123,73 +198,23 @@ describe(`deleteFileByName({revision: 'all'})`, function () {
     })
     await sqlGrid.writeFile({
       filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'lipsum.txt'))
+      buffer: fs.readFileSync(path.join(__dirname, 'files', 'saturnV.jpg'))
     })
-  })
-
-  it('complete without error', async function () {
-    await sqlGrid.deleteFileByName({filename: 'testfile'})
-  })
-})
-
-describe('deleteFileByName({revision: -1})', function () {
-  let sqlGrid
-
-  before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
-    await sqlGrid.initBucket({dropTables: true})
     await sqlGrid.writeFile({
       filename: 'testfile',
       buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
     })
     await sqlGrid.writeFile({
       filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'saturnV.jpg'))
-    })
-    await sqlGrid.writeFile({
-      filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'lipsum.txt'))
-    })
-    await sqlGrid.writeFile({
-      filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'empty.txt'))
-    })
-  })
-
-  it('complete without error', async function () {
-    await sqlGrid.deleteFileByName({filename: 'testfile', revision: -1})
-    await sqlGrid.deleteFileByName({filename: 'testfile', revision: -1})
-    await sqlGrid.deleteFileByName({filename: 'testfile', revision: -1})
-  })
-})
-
-describe('deleteFileByName({revision: 0})', function () {
-  let sqlGrid
-
-  before(async function () {
-    sqlGrid = SQLGrid({dialect: 'sqlite', storage: './database.sqlite', logging: null})
-    await sqlGrid.initBucket({dropTables: true})
-    await sqlGrid.writeFile({
-      filename: 'testfile',
       buffer: fs.readFileSync(path.join(__dirname, 'files', 'enterprise.jpg'))
     })
-    await sqlGrid.writeFile({
-      filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'saturnV.jpg'))
-    })
-    await sqlGrid.writeFile({
-      filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'lipsum.txt'))
-    })
-    await sqlGrid.writeFile({
-      filename: 'testfile',
-      buffer: fs.readFileSync(path.join(__dirname, 'files', 'empty.txt'))
-    })
   })
 
-  it('complete without error', async function () {
-    await sqlGrid.deleteFileByName({filename: 'testfile', revision: 0})
-    await sqlGrid.deleteFileByName({filename: 'testfile', revision: 0})
-    await sqlGrid.deleteFileByName({filename: 'testfile', revision: 0})
+  it('Basic usage', async function () {
+    await sqlGrid.deleteFileByName({filename: 'testfile', revision: -1})
+  })
+
+  it('All revisions', async function () {
+    await sqlGrid.deleteFileByName({filename: 'testfile', revision: 'all'})
   })
 })
