@@ -1,3 +1,15 @@
+# 0.1.0
+
+#### New Features
+
+- Files are deduplicated inline.
+- getFile can now return all revisions.
+- readFile can now return all revisions.
+
+#### Breaking Changes
+
+- The database format has changed to support deduplication. No further changes to the database format are planned.
+
 # 0.0.5
 
 #### New Features

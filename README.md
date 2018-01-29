@@ -6,11 +6,12 @@ SQLGrid is a method of storing large files inside a SQL database.
 
 ### Features
 
+- **Efficient** - Save space with automatic inline deduplication.
 - **Easy** - Read and write files as if they were on disk with developer friendly APIs.
 - **Revisions** - Keeps multiple versions of files.
 - **Byte-range Capable** - Supports byte ranges to allow for streaming media.
 - **Consistent** - Sha256 hashes are calculated when the file is written, and verified when read back out.
-- **Fast** - Supports in-memory caching so your database server doesn't fall over when something goes viral.
+- **Fast** - Automatically caches hot data to save your database unneeded effort.
 
 View the [Changelog](https://github.com/internalfx/sqlgrid/blob/master/CHANGELOG.md)
 
@@ -175,7 +176,7 @@ fs.createReadStream('./myVid.mp4').pipe(writeStream)
 | --- | --- | --- | --- |
 | id | Null | String | The `id` of the file to retrieve. |
 | filename | Null | String | Ignored if `id != null`. The `filename` of the file to retrieve |
-| revision | `-1` | Number | Ignored if `id != null`. The revision of the file to retrieve. If multiple files are uploaded under the same `filename` they are considered revisions. This may be a positive or negative number. (see chart below) |
+| revision | `-1` | Number | Ignored if `id != null`. The revision of the file to retrieve. If multiple files are uploaded under the same `filename` they are considered revisions. This may be a positive or negative number. (see chart below) Passing `'all'` will return an array of all revisions. |
 
 ###### How revision numbers work
 
@@ -191,7 +192,8 @@ If there are five versions of a file, the below chart would be the revision numb
 
 ##### Description
 
-Returns a promise that resolves to the files information.
+If `revision` is a number a promise will be returned that resolves to an object of the files information.
+If `revision` is `'all'` a promise will be returned that resolves to an array of all file revisions.
 
 ##### Example
 
@@ -210,7 +212,7 @@ let file2 = bucket.getFile({filename: 'catVideo.mp4', revision: 2})
 | --- | --- | --- | --- |
 | id | Null | String | The `id` of the file to retrieve. |
 | filename | Null | String | Ignored if `id != null`. The `filename` of the file to retrieve |
-| revision | `-1` | Number | Ignored if `id != null`. The revision of the file to retrieve. If multiple files are uploaded under the same `filename` they are considered revisions. This may be a positive or negative number. (see chart below) |
+| revision | `-1` | Number/String | Ignored if `id != null`. The revision of the file to retrieve. If multiple files are uploaded under the same `filename` they are considered revisions. This may be a positive or negative number. (see chart below) Passing `'all'` will return an array of all revisions. |
 | seekStart | Null | Number | The start of the byte range. |
 | seekEnd | Null | Number | The end of the byte range. If omitted the stream will continue to the end of file. |
 
@@ -228,7 +230,8 @@ If there are five versions of a file, the below chart would be the revision numb
 
 ##### Description
 
-Returns a promise that resolves to the files information and contents.
+If `revision` is a number a promise will be returned that resolves to an object of the files information and contents.
+If `revision` is `'all'` a promise will be returned that resolves to an array of all file revisions and contents.
 
 ##### Example
 
