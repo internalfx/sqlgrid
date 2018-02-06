@@ -1,3 +1,13 @@
+# 0.3.0
+
+#### New Features
+
+- None
+
+#### Breaking Changes
+
+- Renamed `file.length` property to `file.size`
+
 # 0.2.1
 
 #### New Features
