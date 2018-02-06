@@ -1,3 +1,11 @@
+# 0.2.0
+
+#### New Features
+
+#### Breaking Changes
+
+- Changed default bucket name to `sqlgrid`
+
 # 0.1.0
 
 #### New Features
