@@ -1,3 +1,15 @@
+# 0.3.1
+
+Fix read error, and potential race condition.
+
+#### New Features
+
+- None
+
+#### Breaking Changes
+
+- None
+
 # 0.3.0
 
 #### New Features
