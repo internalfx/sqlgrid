@@ -76,9 +76,9 @@ describe('createWriteStream()', function () {
   })
 
   it('Handles large files', async function () {
-    let rStream = await fs.createReadStream(path.join(__dirname, 'files', 'clouds.mp4'))
+    let rStream = await fs.createReadStream(path.join(__dirname, 'files', 'video.mp4'))
     let wStream = sqlGrid.createWriteStream({
-      filename: 'clouds.mp4'
+      filename: 'video.mp4'
     })
 
     rStream.pipe(wStream)
@@ -86,13 +86,13 @@ describe('createWriteStream()', function () {
   })
 
   it('Handles duplicate files', async function () {
-    let rStream2 = await fs.createReadStream(path.join(__dirname, 'files', 'clouds.mp4'))
-    let rStream3 = await fs.createReadStream(path.join(__dirname, 'files', 'clouds.mp4'))
+    let rStream2 = await fs.createReadStream(path.join(__dirname, 'files', 'video.mp4'))
+    let rStream3 = await fs.createReadStream(path.join(__dirname, 'files', 'video.mp4'))
     let wStream2 = sqlGrid.createWriteStream({
-      filename: 'clouds2.mp4'
+      filename: 'video2.mp4'
     })
     let wStream3 = sqlGrid.createWriteStream({
-      filename: 'clouds3.mp4'
+      filename: 'video3.mp4'
     })
 
     rStream2.pipe(wStream2)
