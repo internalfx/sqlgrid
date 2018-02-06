@@ -1,6 +1,18 @@
+# 0.2.1
+
+#### New Features
+
+- None
+
+#### Breaking Changes
+
+- None
+
 # 0.2.0
 
 #### New Features
+
+- None
 
 #### Breaking Changes
 
