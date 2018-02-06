@@ -4,7 +4,7 @@
 
 SQLGrid is a method of storing large files inside a SQL database.
 
-Using a RethinkDB? Try [rethinkdb-regrid](https://github.com/internalfx/rethinkdb-regrid)
+Using RethinkDB? Try [rethinkdb-regrid](https://github.com/internalfx/rethinkdb-regrid)
 
 ### Features
 
