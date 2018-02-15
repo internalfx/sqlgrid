@@ -1,3 +1,15 @@
+# 0.3.2
+
+Return file size as an integer.
+
+#### New Features
+
+- None
+
+#### Breaking Changes
+
+- None
+
 # 0.3.1
 
 Fix read error, and potential race condition.
