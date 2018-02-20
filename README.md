@@ -38,7 +38,7 @@ npm install --save sqlgrid
 ```javascript
 var SQLGrid = require('sqlgrid')
 
-var bucket = SQLGrid({dialect: 'sqlite'})
+var bucket = SQLGrid({dialect: 'postgres'})
 
 // initBucket creates tables and indexes if they don't exist, returns a promise.
 bucket.initBucket().then(function () {
@@ -62,7 +62,6 @@ bucket.initBucket().then(function () {
 | key | default | type | description |
 |---|---|---|---|
 | bucketName | `fs` | String | The name of the bucket. Table names are prefixed by this. |
-| chunkSizeBytes | `1024 * 1024` | Number | The default chunk size, in bytes. |
 | concurrency | `10` | Number | When writing/reading a file, the number of concurrent queries in flight for a given stream. |
 | cacheSize | `1000` | Number | The maximum number of objects to keep in memory. Setting to `0` will disable caching. |
 
