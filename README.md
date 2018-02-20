@@ -78,7 +78,7 @@ Creates a new SQLGrid bucket instance.
 ```javascript
 var SQLGrid = require('sqlgrid')
 
-var bucket = SQLGrid({dialect: 'sqlite', storage: './database.sqlite'}, {bucketName: 'mybucket'})
+var bucket = SQLGrid({dialect: 'postgres'}, {bucketName: 'mybucket'})
 ```
 
 ---
