@@ -115,7 +115,6 @@ bucket.initBucket().then(function () {
 | --- | --- | --- | --- |
 | filename | *required* | String | The name of the file. |
 | buffer | *required* | Buffer | A buffer of file contents. |
-| chunkSizeBytes | The `chunkSizeBytes` setting for the bucket. | Number | Size of each chunk in bytes. |
 
 ##### returns
 
@@ -142,7 +141,6 @@ let newFile = await bucket.writeFile({filename: '/videos/myVid.mp4', buffer: fil
 | key | default | type | description |
 | --- | --- | --- | --- |
 | filename | *required* | String | The name of the file. |
-| chunkSizeBytes | The `chunkSizeBytes` setting for the bucket. | Number | Size of each chunk in bytes. |
 
 ##### returns
 
@@ -156,8 +154,7 @@ Returns a write stream for storing a file in SQLGrid.
 
 ```javascript
 var writeStream = bucket.createWriteStream({
-  filename: '/videos/myVid.mp4',
-  chunkSizeBytes: 1024 * 255
+  filename: '/videos/myVid.mp4'
 })
 
 writeStream.on('finish', function () {
