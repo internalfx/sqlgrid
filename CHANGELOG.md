@@ -1,5 +1,17 @@
 # 0.3.2
 
+Use more efficient check for pointer count.
+
+#### New Features
+
+- None
+
+#### Breaking Changes
+
+- Rename "finishedAt" column to "finished_at" to be more inline with SQL convention.
+
+# 0.3.2
+
 Return file size as an integer.
 
 #### New Features
