@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/internalfx/sqlgrid.git"
+    "url": "git+https://git.internalfx.com/internalfx/sqlgrid.git"
   },
   "author": "Bryan Morris",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/internalfx/sqlgrid/issues"
+    "url": "https://git.internalfx.com/internalfx/sqlgrid/issues"
   },
-  "homepage": "https://github.com/internalfx/sqlgrid",
+  "homepage": "https://git.internalfx.com/internalfx/sqlgrid",
   "dependencies": {
     "bluebird": "^3.5.0",
     "chai": "^4.1.1",
