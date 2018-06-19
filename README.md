@@ -63,7 +63,7 @@ bucket.initBucket().then(function () {
 |---|---|---|---|
 | bucketName | `fs` | String | The name of the bucket. Table names are prefixed by this. |
 | concurrency | `10` | Number | When writing/reading a file, the number of concurrent queries in flight for a given stream. |
-| cacheSize | `1000` | Number | The maximum number of objects to keep in memory. Setting to `0` will disable caching. |
+| cacheSize | `100` | Number | The cache size in megabytes. Setting to `0` will disable caching. |
 
 ##### returns
 
