@@ -30,5 +30,11 @@
     "mysql2": "^1.5.1",
     "pg": "^6.0.0",
     "sqlite3": "^3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-plugin-html": "^4.0.5",
+    "eslint-plugin-vue": "^4.7.1",
+    "standard": "^12.0.1"
   }
 }
