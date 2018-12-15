@@ -1,5 +1,5 @@
 {
-  "name": "sqlgrid",
+  "name": "@internalfx/sqlgrid",
   "version": "0.6.0",
   "description": "A file storage system for SQL databases inspired by GridFS",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://git.internalfx.com/internalfx/sqlgrid.git"
+    "url": "https://github.com/internalfx/sqlgrid.git"
   },
   "author": "Bryan Morris",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://git.internalfx.com/internalfx/sqlgrid/issues"
+    "url": "https://github.com/internalfx/sqlgrid/issues"
   },
-  "homepage": "https://git.internalfx.com/internalfx/sqlgrid",
+  "homepage": "https://github.com/internalfx/sqlgrid",
   "dependencies": {
     "bluebird": "^3.5.0",
     "chai": "^4.1.1",
