@@ -1,6 +1,6 @@
 # SQLGrid
 
-[![npm version](https://img.shields.io/npm/v/sqlgrid.svg)](https://www.npmjs.com/package/sqlgrid) [![license](https://img.shields.io/npm/l/sqlgrid.svg)](https://github.com/internalfx/sqlgrid/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@internalfx/sqlgrid.svg)](https://www.npmjs.com/package/@internalfx/sqlgrid) [![license](https://img.shields.io/npm/l/@internalfx/sqlgrid.svg)](https://github.com/internalfx/@internalfx/sqlgrid/blob/master/LICENSE)
 
 SQLGrid is a method of storing large files inside a SQL database.
 
@@ -27,10 +27,10 @@ Arthur Andrew Medical manufactures products with ingredients that have extensive
 
 ## Installation
 
-Supports node v7.6+
+Supports node v8.0+
 
 ```
-npm install --save sqlgrid
+npm install --save @internalfx/sqlgrid
 ```
 
 ## TL;DR
