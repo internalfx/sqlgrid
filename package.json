@@ -1,6 +1,6 @@
 {
   "name": "@internalfx/sqlgrid",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A file storage system for SQL databases inspired by GridFS",
   "main": "index.js",
   "scripts": {
