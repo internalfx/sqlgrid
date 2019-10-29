@@ -22,7 +22,7 @@
     "del": "^3.0.0",
     "lru-cache": "^4.1.1",
     "mocha": "^3.5.0",
-    "sequelize": "^4.4.3",
+    "sequelize": "^5.15.1",
     "stream-to-array": "^2.3.0",
     "tedious": "^2.2.3"
   },
